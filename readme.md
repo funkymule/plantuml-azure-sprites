@@ -16,3 +16,15 @@ rectangle AppService <<$containerApp>>
 
 App --> AppService
 ```
+
+## Creating new sprites
+
+New sprites are created with the script `scripts\Convert-ToSprites.ps1`.
+
+```PowerShell
+@(16, 24, 32, 48, 64, 128)
+    | %{gci .\png\*.png 
+        | .\scripts\Convert-ToSprites.ps1 -Size $_ 
+        | Out-File .\sprites\azure-sprites-$_.puml
+    }
+```
